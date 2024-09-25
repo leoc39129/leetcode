@@ -47,14 +47,14 @@ class Solution(object):
         #    (also, the +1 is in the 3rd for loop because remember, range is EXCLUSIVE in python). That way, when we evaluate...
 
         #    DP[2][3] = DP[1][2] + DP[1][1] + DP[1][0] 
-        
+
         for dice in range(1, n+1):
             for total_sum in range(1, target+1):
                 for face in range(1, min(k+1, total_sum+1)):
                     dp[dice][total_sum] += dp[dice-1][total_sum-face] % MOD
 
-        print(dp)
-        print(dp[n][target])
+        #print(dp)
+        #print(dp[n][target])
         return dp[n][target] % MOD
 
         '''
