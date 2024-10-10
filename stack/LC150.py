@@ -75,4 +75,45 @@ Order only matters for / and - . So in our stack if we want 6 divided by what
 came before, signal that by putting the number first. Same with subtraction.
 Otherwise, it should be operator then number
 '''
+
+'''
+Using someone else's solution...
+
+class Solution(object):
+    def evalRPN(self, tokens):
+        """
+        :type tokens: List[str]
+        :rtype: int
+        """
+        stack = []
+
+        for st in tokens:
+            if st == '+':
+                stack.append(stack.pop() + stack.pop())
+            elif st == '*':
+                stack.append(stack.pop() * stack.pop())
+            elif st == '-':
+                second, first = stack.pop(), stack.pop()
+                stack.append(first - second)
+            elif st == '/':
+                second, first = stack.pop(), stack.pop()
+                result = first // second
+                if result < 0 and first % second != 0:
+                    result += 1
+                stack.append(result)
+            else:
+                stack.append(int(st))
+        #print(stack)
+
+        ret = stack.pop()
+        return ret
+
+
+COME BACK TO THIS PROBLEM:
+What did we learn...
+1. You don't have to make the entire stack and then use it. In this case, it was way better to use it as you go.
+2. This code started to get WAY too complicated for a LeetCode medium. That should've been a warning sign -- be wary 
+   for that in the future, and be open to rethinking your approach
+3. 
+'''
         
