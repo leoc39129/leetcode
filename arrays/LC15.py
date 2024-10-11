@@ -39,6 +39,44 @@ Runtime issues gets through 308/313 which makes sense
 
 Take it one step further with the sorting!
 
+GPT Solution:
+
+class Solution:
+    def threeSum(self, nums):
+        nums.sort()
+        result = []
+        
+        for i in range(len(nums)):
+            # Skip duplicates for the 'i' pointer
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+                
+            left, right = i + 1, len(nums) - 1
+            
+            while left < right:
+                current_sum = nums[i] + nums[left] + nums[right]
+                
+                if current_sum == 0:
+                    result.append([nums[i], nums[left], nums[right]])
+                    left += 1
+                    right -= 1
+                    
+                    # Skip duplicates for the left and right pointers
+                    while left < right and nums[left] == nums[left - 1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right + 1]:
+                        right -= 1
+                        
+                elif current_sum < 0:
+                    left += 1
+                else:
+                    right -= 1
+                    
+        return result
+
+
+Discussion Board Solution:
+
 class Solution(object):
     def threeSum(self, nums):
         """
