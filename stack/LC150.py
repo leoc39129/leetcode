@@ -1,3 +1,42 @@
+import math
+
+class Solution(object):
+    def evalRPN(self, tokens):
+        """
+        :type tokens: List[str]
+        :rtype: int
+        """
+        # Base Case:
+        if len(tokens) == 1:
+            return int(tokens[0])
+        
+        stack = []
+        for token in tokens:
+            #print(stack)
+            if token in '+-*/':
+                op2 = stack.pop()
+                op1 = stack.pop()
+                if token == '+':
+                    stack.append(op1 + op2)
+                elif token == '*':
+                    stack.append(op1 * op2)
+                elif token == '-':
+                    stack.append(op1 - op2)
+                else:
+                    temp = op1 / op2
+                    if temp < 0 and abs(op1) % abs(op2) != 0:
+                        stack.append(int(math.ceil(float(op1) / op2)))
+                    else:
+                        stack.append(op1 // op2)
+            else:
+                stack.append(int(token))
+            
+        return stack.pop()
+
+'''
+A little tricky with the fact that "//" in Python always rounds down, but otherwise smooth sailing
+
+
 class Solution(object):
     def evalRPN(self, tokens):
         """
@@ -64,7 +103,7 @@ class Solution(object):
             print(ret)
         return ret
 
-'''
+        
 How do we build this stack?
 Ex1: ["2","1","+","3","*"] --> [+,1,*,3] --> [3,*,1,+]
 Ex2: ["4","13","5","/","+"] --> [/,5,+,4] --> [4,+,5,/]
