@@ -52,6 +52,63 @@ class Solution(object):
                 trav = trav.next
                 trav.next = None
         return ret
+    
+'''
+Came back to this problem a while later, nailed it
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def mergeTwoLists(self, list1, list2):
+        """
+        :type list1: Optional[ListNode]
+        :type list2: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        # Base Case
+        if not list1:
+            return list2
+        if not list2:
+            return list1
+        
+        # Dummy Node for returning
+        ret = ListNode(0)
+        
+        if list2.val < list1.val:
+            ret.next = list2
+            trail = list2
+            list2 = list2.next
+        else:
+            ret.next = list1
+            trail = list1
+            list1 = list1.next
+
+        while list1 or list2:
+            if list1 and list2:
+                # Compare values, link up the smaller val
+                if list2.val < list1.val:
+                    trail.next = list2
+                    list2 = list2.next
+                    trail = trail.next
+                else:
+                    trail.next = list1
+                    list1 = list1.next
+                    trail = trail.next
+            elif list1:
+                trail.next = list1
+                list1 = list1.next
+                trail = trail.next
+            else:
+                # list2
+                trail.next = list2
+                list2 = list2.next
+                trail = trail.next
+
+        return ret.next
+'''
             
                     
                     

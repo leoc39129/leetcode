@@ -25,5 +25,39 @@ class Solution(object):
 '''
 OR just 
 return Counter(s) == Counter(t)
-didn't know that shit
+
+Came back to this problem, solved it very similarly!
+
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        # Base Case
+        if len(s) != len(t):
+            return False
+
+        s_dict = {}
+        for ch in s:
+            if ch not in s_dict.keys():
+                s_dict[ch] = 1
+            else:
+                s_dict[ch] += 1
+                
+        for ch in t:
+            if ch not in s_dict.keys():
+                return False
+            else:
+                s_dict[ch] -= 1
+
+        for key in s_dict.keys():
+            if s_dict[key] != 0:
+                return False
+
+        return True
+
+
+        
 '''
