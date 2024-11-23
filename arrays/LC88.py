@@ -106,6 +106,24 @@ Revisited this problem and initially came up with the O(m+n) RT, O(m) space solu
 "AlmostSolution". I then realized doing almost the exact same thing, but starting from
 the ends of the arrays would mean using O(1) space, which lead me to "OptimalSolution", 
 which has a runtime of O(m+n), and a space complexity of O(1)
+
+Here's a similar discussion board solution
+
+class Solution:
+    def merge(self, nums1, m, nums2, n):
+        midx = m - 1
+        nidx = n - 1 
+        right = m + n - 1
+
+        while nidx >= 0:
+            if midx >= 0 and nums1[midx] > nums2[nidx]:
+                nums1[right] = nums1[midx]
+                midx -= 1
+            else:
+                nums1[right] = nums2[nidx]
+                nidx -= 1
+
+            right -= 1
 '''
             
         
