@@ -44,3 +44,45 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+'''
+Came back to this one, wow my code was not the greatest whenever I did this one.
+Here's what I came up with in ~5 mins
+
+RT: O(n)
+Space: O(n)
+
+'''
+
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        if len(s) == 1 or s[0] in ']})':
+            return False
+
+        openclose = {
+            "{" : "}",
+            "[" : "]",
+            "(" : ")"
+        }
+
+        stack = []
+        idx = 0
+        while idx < len(s):
+            if s[idx] in "[{(":
+                stack.append(s[idx])
+            elif stack:
+                elem = stack.pop()
+                if openclose[elem] != s[idx]:
+                    return False
+            else:
+                return False
+
+            idx += 1
+        
+        return not stack
+        
