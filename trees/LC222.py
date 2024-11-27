@@ -51,6 +51,26 @@ class Solution(object):
     
 
 '''
+Revisited this problem with a similar result, but at least I understand the discussion board solution now
+
+RT: O(log(n)*log(n))
+Space: O(log(n)) -- this tree is not always perfectly balanced, but it will never be unbalanced
+    space is then O(tree height) = O(h) = O(log(n))
+
+Even for some smaller cases, not all nodes are "visited" in the recursive stack. In Example 1 that the problem
+gives, nodes 4 and 5 will not be "visited" with their own recursive call. Instead, the recursive call where root=2
+will find a perfect subtree of 3 nodes. All of the other nodes in that example will be visited, but you can see the
+runtime benefits if you had a tree like ...
+
+          1
+       /     \
+      2        3
+     / \      / \
+    4   5    6   7
+   / \ / \  / \ / \
+  8  910 11
+
+
 Discussion board solution:
 
 class Solution(object):
@@ -75,9 +95,6 @@ class Solution(object):
         if l == r : return 2**l - 1                   
         
         return 1 + self.countNodes(root.left) + self.countNodes(root.right)
-
-What I don't get about this is we end up looking at all N nodes anyway for the first example on LC -- I guess O(N) = O(( log(N) )^2)
-only in that case? Look at it for larger cases, understand the methods for it, redo in your own work later
 '''
             
 
