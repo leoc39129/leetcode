@@ -67,7 +67,7 @@ class NegativeSolution(object):
 
 # and here's my solution from way back in March 2023... ew
 
-class Solution(object):
+class OldSolution(object):
     def uniquePathsWithObstacles(self, obstacleGrid):
         """
         :type obstacleGrid: List[List[int]]
