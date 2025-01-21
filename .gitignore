@@ -1,1 +1,10 @@
+# Config files
 .vscode/
+
+# Binary and .dSYM
+*.dSYM/
+*.out
+*.exe
+*.o
+*.obj
+cpp_refresh/string_practice
